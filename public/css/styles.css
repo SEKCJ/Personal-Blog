@@ -1,3 +1,7 @@
-#root, html{
+#root, html {
     background-color: #1d699b;
+}
+
+#root {
+    height: 100%;
 }

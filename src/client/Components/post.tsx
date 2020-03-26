@@ -9,7 +9,7 @@ const Post: React.FC<IAppProps> = props => {
     const [titleVal, setTitleVal] = useState<string>("");
     const [contentVal, setContentVal] = useState<string>("");
     const [tagOptions, setTagOptions] = useState<JSX.Element[]>([]);
-    const [formTag, setFormTag] = useState<string>("");
+    const [formTag, setFormTag] = useState<string>("Select a Tag...");
     const [tagObject, setTagObject] = useState<any>()
 
     let handleChange = (event: string, id: string) => {
@@ -25,7 +25,7 @@ const Post: React.FC<IAppProps> = props => {
     }
 
     let handleClick = async () => {
-        if (titleVal !== "" && contentVal !== "") {
+        if (titleVal !== "" && contentVal !== "" && formTag !== "Select a Tag...") {
             let tagVal = tagObject[formTag];
             await RESTAPI('/api/blogs', {
                 title: titleVal,
@@ -42,7 +42,6 @@ const Post: React.FC<IAppProps> = props => {
         try {
             let response: Response = await fetch('/api/tags');
             let json: Array<ITags> = await response.json();
-            setFormTag(json[0].name)
             makeOptions(json);
         } catch (error) {
             if (error) throw error;
@@ -51,7 +50,7 @@ const Post: React.FC<IAppProps> = props => {
 
     let makeOptions = (json: Array<ITags>) => {
         let tagObject: any = {}
-        let options = json.map((element, index) => {
+        let options = json.map((element) => {
             let id = element.id;
             let tagName = element.name;
             tagObject[tagName] = id;
@@ -90,6 +89,7 @@ const Post: React.FC<IAppProps> = props => {
                                         <Form.Label>Tag</Form.Label>
                                         <Form.Control as="select" value={formTag}
                                             onChange={(event: any) => { handleTagChange(event.target.value) }}>
+                                            <option>Select a Tag...</option>
                                             {tagOptions}
                                         </Form.Control>
                                     </Form.Group>
@@ -101,8 +101,11 @@ const Post: React.FC<IAppProps> = props => {
                                 </Form>
                             </Card.Body>
                             <Card.Footer className="d-flex justify-content-center">
-                                <Button variant="primary"
-                                    onClick={(event: React.MouseEvent) => { event.preventDefault(); handleClick() }}>Submit Blog!</Button>
+                                <div className="d-flex justify-content-between" style={{ "width": "20em" }}>
+                                    <Button variant="primary"
+                                        onClick={(event: React.MouseEvent) => { event.preventDefault(); handleClick() }}>Submit Blog!</Button>
+                                    <Card.Link as={Link} to="/" className="btn btn-danger">Go Back</Card.Link>
+                                </div>
                             </Card.Footer>
                         </Card>
                     </Col>

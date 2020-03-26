@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, CardDeck } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IAppProps } from '../App';
 
@@ -28,7 +28,7 @@ const Home: React.FC<IAppProps> = props => {
             let dateFormat = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
             return (
                 <Card className="mx-3 my-3"
-                    style={{ "width": "20em", "backgroundColor": "#F0DF7F" }} key={index}>
+                    style={{ "width": "15em", "backgroundColor": "#F0DF7F" }} key={index}>
                     <Card.Img src="https://mailcot.com/wp-content/uploads/2020/01/blog-460x277-c.jpg" />
                     <Card.Body>
                         <Card.Title as="h3">{Title}</Card.Title>
@@ -73,6 +73,7 @@ export interface IBlogs {
     _created: string;
     name: string;
     tagName: string;
-
+    tagid: number;
+    authorid: number;
 
 }

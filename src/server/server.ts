@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static('public'));
-app.get(["/", "/blogs/:id", "/admin/post"], (req, res) => {
+app.get(["/", "/blogs/:id", "/admin/post", "/admin/edit/:id"], (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 app.use('/api', apiRouter);
