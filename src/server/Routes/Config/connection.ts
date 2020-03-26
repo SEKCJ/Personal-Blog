@@ -5,7 +5,8 @@ export default {
         port: 3306,
         user: 'adminblogs',
         password: 'rootadmin',
-        database: 'dbblogs'
+        database: 'dbblogs',
+        multipleStatements: true
     }
 
 }

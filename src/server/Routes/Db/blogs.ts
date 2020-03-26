@@ -1,18 +1,20 @@
 import { Query } from './query';
 
 const all = async () => {
-    return Query('SELECT * FROM blogs');
+    return Query(`SELECT *, c.name AS tagName from blogtags a JOIN blogs b ON b.id = a.blogid 
+    JOIN tags c ON c.id = a.tagid JOIN authors d ON d.id = b.authorid ORDER BY a.blogid ASC`);
 }
 
 const one = async (id: number) => {
-    return Query('SELECT * FROM blogs WHERE id = ?', [id]);
+    return Query(`SELECT *, c.name AS tagName from blogtags a JOIN blogs b ON b.id = a.blogid 
+    JOIN tags c ON c.id = a.tagid JOIN authors d ON d.id = b.authorid WHERE b.id = ?`, [id]);
 }
 
-const post = async (title: string, content: string, authorid: number) => {
+const post = async (title: string, content: string, authorid: number, tagid: number) => {
     let values = [title, content, authorid];
-    let tempQuery: any =  await Query('INSERT INTO blogs (title, content, authorid) VALUES(?,?,?)', values)
-    let insertId = Object.entries(tempQuery)[2][1];
-    
+    let tempQuery: any = await Query('INSERT INTO blogs (title, content, authorid) VALUES(?,?,?)', values)
+    let insertId: any = Object.entries(tempQuery)[2][1];
+    return Query('INSERT INTO blogtags(blogid, tagid) VALUES(?,?); CALL spBlogTags(?)', [insertId, tagid, insertId])
 }
 
 const put = async (id: number, title: string, content: string, authorid: number) => {

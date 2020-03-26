@@ -25,15 +25,15 @@ router.get('/:id?', async (req, res) => {
 router.post('/', async (req, res) => {
     let title = req.body.title;
     let content = req.body.content;
-    let authorid = parseInt(req.body.authorid,10);
-
+    let authorid = parseInt(req.body.authorid, 10);
+    let tagid = parseInt(req.body.tagid, 10);
     try {
-        res.json(await DbBlogs.post(title, content, authorid))
+        res.json(await DbBlogs.post(title, content, authorid, tagid))
     } catch (err) {
         if (err) throw err;
 
         res.sendStatus(500);
-    }
+    }   
 
 })
 
