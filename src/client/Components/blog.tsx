@@ -21,7 +21,7 @@ const Blog: React.FC<IBlogProps> = ({ match: { params: { id } } }) => {
     let makeBlog = (json: IBlogs) => {
         let Title: string = json.title;
         let Author: string = json.name;
-        let date: Date = new Date(json._created);
+        let date: Date = new Date(json.datecreated);
         let dateFormat = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         let Tags: string = json.tagName;
         let Content: string = json.content;

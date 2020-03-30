@@ -24,7 +24,7 @@ const Home: React.FC<IAppProps> = props => {
             let Title: string = element.title;
             let Author: string = element.name;
             let blogId: string = element.blogid;
-            let date: Date = new Date(element._created);
+            let date: Date = new Date(element.datecreated);
             let dateFormat = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
             return (
                 <Card className="mx-3 my-3"
@@ -70,7 +70,7 @@ export interface IBlogs {
     blogid: string;
     title: string;
     content: string;
-    _created: string;
+    datecreated: string;
     name: string;
     tagName: string;
     tagid: number;
