@@ -95,7 +95,7 @@ const Post: React.FC<IAppProps> = props => {
                                     </Form.Group>
                                     <Form.Group controlId="content">
                                         <Form.Label>Content</Form.Label>
-                                        <Form.Control as="textarea" rows="4" value={contentVal} placeholder="Enter Your Blog Content"
+                                        <Form.Control as="textarea" rows={4} value={contentVal} placeholder="Enter Your Blog Content"
                                             onChange={(event: any) => { handleChange(event.target.value, "content") }} />
                                     </Form.Group>
                                 </Form>
