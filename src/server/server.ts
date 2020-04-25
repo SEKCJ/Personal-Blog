@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as dotenv from 'dotenv';
 import * as morgan from 'morgan';
 
-import apiRouter from './routes';
+import apiRouter from './Routes';
 
 const app = express();
 

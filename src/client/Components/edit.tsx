@@ -60,7 +60,7 @@ const Edit: React.FC<IBlogProps> = ({ match: { params: { id } } }) => {
                                     </Form.Group>
                                     <Form.Group controlId="editContent">
                                         <Form.Label>Edit Content</Form.Label>
-                                        <Form.Control as="textarea" rows="4" value={contentVal}
+                                        <Form.Control as="textarea" rows={4} value={contentVal}
                                             onChange={(event: any) => { handleChange(event.target.value, "content") }} />
                                     </Form.Group>
                                 </Form>
