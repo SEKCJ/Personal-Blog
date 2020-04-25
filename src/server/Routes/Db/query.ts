@@ -1,5 +1,5 @@
 import * as mysql from 'mysql';
-import config from '../Config/connection';
+import config from '../Config/index';
 
 
 const Connection = mysql.createConnection(config.MySQL);
